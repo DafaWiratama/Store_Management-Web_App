@@ -1,0 +1,54 @@
+<div class="flex flex-row-reverse pt-8 space-x-4">
+
+</div>
+
+<div class="flex flex-row pt-2 space-x-4">
+  <div class="flex-auto rounded px-4 py-2 bg-white mb-auto shadow-xl">
+    <p class="font-medium mb-1">Basket</p>
+    <mat-divider></mat-divider>
+
+    <div class="py-4 flex flex-row" *ngFor="let item of basket">
+      <p class="flex-auto">{{item.product.name}}</p>
+      <p class="flex-auto">{{item.product.price}}</p>
+      <p class="flex-auto">Discount</p>
+      <p class="flex-auto">{{item.quantity}}</p>
+      <p class="w-48 text-right">Rp 100.000.000,00</p>
+    </div>
+  </div>
+
+
+  <div class="flex flex-col space-y-2 w-96">
+
+    <div class="rounded px-4 bg-white shadow-xl pt-4">
+      <mat-form-field floatLabel="always" class="w-full">
+        <mat-label>Search Product</mat-label>
+        <input matInput type="text" [ngModel]="keyword | async" (ngModelChange)="keyword.next($event)"
+               autocomplete="off">
+        <button *ngIf="keyword | async" matSuffix mat-icon-button aria-label="Clear" (click)="keyword.next('')">
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
+
+      <ng-container *ngIf="keyword | async">
+        <div class="pb-4">
+          <div *ngIf="filtered_products.length != 0">
+            <mat-divider></mat-divider>
+            <div *ngFor="let product of filtered_products | slice:0:8">
+              <button class="py-2 w-full text-left" (click)="onAddProduct(product)">{{product.name}}</button>
+              <mat-divider></mat-divider>
+            </div>
+          </div>
+          <div *ngIf="filtered_products.length == 0">
+            <div>Not Product Found</div>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+
+    <div class="rounded px-4 py-2 bg-white shadow-xl">
+      <p class="font-medium mb-1">Summary</p>
+      <mat-divider></mat-divider>
+    </div>
+
+  </div>
+</div>

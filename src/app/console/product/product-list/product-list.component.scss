@@ -1,0 +1,15 @@
+.product-deactivated {
+  opacity: 0.5;
+}
+
+.card, .card-button-primary {
+  @apply rounded shadow-md
+}
+
+.card.card-button, .card-button-primary {
+  @apply hover:translate-y-[-4px] hover:text-white hover:bg-blue-500 duration-300 transition hover:opacity-100
+}
+
+.card.card-color-primary, .card-button-primary {
+  @apply bg-white
+}
